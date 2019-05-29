@@ -1,6 +1,6 @@
 <template>
-  <div class="contactForm">
-    <form class="">
+  <div class="contactFormContainer">
+    <form class="contactForm">
       <h3>Add a New Contact</h3>
       <div class="fieldGroup">
         <label for="name">Contact Name: </label>
@@ -57,8 +57,9 @@ export default {
 </script>
 
 <style scoped lang="sass">
+  .contactFormContainer
+    margin: 0 5%
   .contactForm
-    // background-color: black
     max-width: 400px
     margin: 1em auto
     border: 1px solid lightgray
@@ -82,8 +83,6 @@ export default {
   	display: flex
   	overflow: hidden
     border: 1px solid #b6b6b6
-    // label
-    //   flex: 1
   .buttonGroup
     padding: 15px
     text-align: right

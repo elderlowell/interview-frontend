@@ -4,7 +4,6 @@
       <div class="pageOptions">
         <h4>Per Page</h4>
         <div v-for="option in perPageOptions" @click="changeOption(option)" :class="{ activeOption: option === perPage }">{{ option }}</div>
-        <!-- <div @click="changeOption(contactsCount)" :class="{ activeOption: perPage === contactsCount }">All</div> -->
       </div>
       <div class="pageNumbers">
         <h4>Page</h4>
@@ -16,7 +15,13 @@
       </div>
     </div>
     <ul>
-      <li v-for="contact in contacts.slice(firstContact - 1, firstContact - 1 + perPage)" :key="contact.id" class="item" :class="{ isFavorite: contact.is_favorite }">{{ contact.name }}</li>
+      <li v-for="contact in contacts.slice(firstContact - 1, firstContact - 1 + perPage)" :key="contact.id" class="item" :class="{ isFavorite: contact.is_favorite }" @click="selectContact(contact.id)">
+        {{ contact.name }}
+        <div v-if="selected === contact.id">
+          <p>{{ contact.email }}</p>
+          <p>{{ contact.phone }}</p>
+        </div>
+      </li>
     </ul>
   </div>
 </template>
@@ -29,6 +34,7 @@ export default {
   data () {
     return {
       contacts: [],
+      selected: 0,
       contactsCount: 0,
       firstContact: 1,
       pageNumber: 1,
@@ -48,6 +54,9 @@ export default {
       this.contacts = data.contacts
       this.contactsCount = data.count
       this.getTotalPages()
+    },
+    selectContact(num) {
+      this.selected = num
     },
     getTotalPages() {
       this.pages = []
@@ -86,6 +95,7 @@ export default {
 <style scoped lang="sass">
   .contact-list
     padding-bottom: 30px
+    margin: 0 5%
   ul
     max-width: 400px
     margin: 0 auto 1em
@@ -100,6 +110,9 @@ export default {
     text-align: left
     @include odd()
       background-color: #eaf1f8
+    p
+      margin: 0
+      font-weight: normal
   li:hover
     text-decoration: underline
     cursor: pointer
