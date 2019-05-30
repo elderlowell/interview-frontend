@@ -1,6 +1,6 @@
 <template>
   <div class="contactFormContainer">
-    <form class="contactForm">
+    <form class="contactForm" id="contactForm">
       <h3>Add a New Contact</h3>
       <div class="fieldGroup">
         <label for="name">Contact Name: </label>
@@ -30,14 +30,14 @@
       </div>
       <div class="buttonGroup">
         <button type="reset" name="button">Clear</button>
-        <button type="button" name="button">Submit</button>
+        <button type="button" @click="saveContact()" name="button">Submit</button>
       </div>
     </form>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import ContactService from '@/services/ContactService'
 
 export default {
   name: 'NewContactForm',
@@ -52,6 +52,10 @@ export default {
     }
   },
   methods: {
+    saveContact() {
+      ContactService.postContact(this.newContact)
+      document.getElementById('contactForm').reset()
+    }
   }
 }
 </script>
