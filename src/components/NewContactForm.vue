@@ -18,7 +18,7 @@
       <div class="fieldGroup">
         <label for="favorite">Favorite: </label>
         <div class="inline-radio" id="favorite">
-        	<div>
+          <div>
             <input type="radio" name="favorite" value="false" v-model="newContact.is_favorite">
             <label>No</label>
           </div>
@@ -52,7 +52,7 @@ export default {
     }
   },
   methods: {
-    saveContact() {
+    saveContact () {
       ContactService.postContact(this.newContact)
       document.getElementById('contactForm').reset()
     }
@@ -86,8 +86,8 @@ export default {
     padding: 0 15px
     color: #DC143C
   .inline-radio
-  	display: flex
-  	overflow: hidden
+    display: flex
+    overflow: hidden
     border: 1px solid #b6b6b6
   .buttonGroup
     padding: 15px
