@@ -78,6 +78,8 @@ export default {
       flex-grow: 1
       font-size: inherit
       color: inherit
+    input:not([type=radio])
+      border: 1px solid lightgray
   .small
     font-size: 14px
     text-align: left
